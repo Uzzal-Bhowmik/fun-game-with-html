@@ -1,0 +1,50 @@
+table, th, td {
+    border: 1px solid red;
+    border-collapse: collapse;
+}
+table {
+    width: 500px;
+    height: 300px;
+}
+.table-dance {
+    animation: table-dance 4000ms ease-in-out infinite alternate;
+}   
+
+td {
+    padding: 0 10px;
+}
+.td-center {
+    text-align: center;
+}
+
+.button {
+    padding: 10px 16px;
+    border: none !important;
+    border-radius: 10px;
+    background-color: green;
+    color: white;
+    font-weight: 700;
+    margin-right: 10px;
+}
+.button:hover {
+    box-shadow: 5px 5px 16px black;
+    cursor: pointer;
+    transition: .5s;
+}
+
+@keyframes table-dance {
+    0% {
+        margin-left: 0;
+    }
+
+    50% {
+        margin-top: 200px;
+        margin-left: 30%;
+    }
+    
+    100% {
+        margin-bottom: 100px;
+        margin-left: 63%; 
+    }
+    
+}

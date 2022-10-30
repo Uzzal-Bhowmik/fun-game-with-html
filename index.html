@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <section id="body">
+        <table id="my-table">
+            <tr>
+                <th colspan="3">Cash Memo</th>
+            </tr>
+            <tr style="text-align: center;">
+                <td>SL</td>
+                <td>Product Name</td>
+                <td>Price</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Mobile</td>
+                <td rowspan="2" class="td-center">$ 200</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Mobile</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Watch</td>
+                <td class="td-center">$ 50</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: right;">Total</td>
+                <td class="td-center">$ <span id="cheat1">250</span></td>
+            </tr>
+        </table>
+    
+        <div style="margin: 10px auto; text-align: center;">
+            <h3>Point: <span id="point">0</span></h3>
+            <button onclick="dance()" class="button">Dance Me</button>
+            <button onclick="stopMe()" class="button">Stop Me</button>
+            <button onclick="reset()" class="button">Reset Me</button>
+        </div>
+    </section>
+</body>
+<script>
+    const dance = () => {
+        const table = document.getElementById("my-table");
+        table.classList.add("table-dance");
+    }
+    
+    const stopMe = () => {
+        const table = document.getElementById("my-table");
+        table.classList.remove("table-dance");
+        let pointCounter = document.getElementById("point");
+        pointCounter.innerText = parseInt(pointCounter.innerText)+1;
+    }
+    const reset = () => {
+        const table = document.getElementById("my-table");
+        table.classList.remove("table-dance");
+        let pointCounter = document.getElementById("point");
+        pointCounter.innerText = "0";
+    }
+
+    document.getElementById("cheat1").addEventListener("dblclick", ()=> {
+            for(let i=0; i<101; i++) {
+                let pointCounter = document.getElementById("point");
+                pointCounter.innerText = parseInt(pointCounter.innerText)+1;
+            }
+    })
+
+
+</script>
+</html>
