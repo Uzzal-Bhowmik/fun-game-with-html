@@ -1,77 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <section id="body">
-        <table id="my-table">
-            <tr>
-                <th colspan="3">Cash Memo</th>
-            </tr>
-            <tr style="text-align: center;">
-                <td>SL</td>
-                <td>Product Name</td>
-                <td>Price</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Mobile</td>
-                <td rowspan="2" class="td-center">$ 200</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Mobile</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Watch</td>
-                <td class="td-center">$ 50</td>
-            </tr>
-            <tr>
-                <td colspan="2" style="text-align: right;">Total</td>
-                <td class="td-center">$ <span id="cheat1">250</span></td>
-            </tr>
-        </table>
-    
-        <div style="margin: 10px auto; text-align: center;">
-            <h3>Point: <span id="point">0</span></h3>
-            <button onclick="dance()" class="button">Dance Me</button>
-            <button onclick="stopMe()" class="button">Stop Me</button>
-            <button onclick="reset()" class="button">Reset Me</button>
+      <div id="top-box">
+        <div>
+          <!-- logo -->
+          <h4>Game With HTML</h4>
         </div>
+        <div>
+          <p
+            style="
+              color: white;
+              font-weight: bold;
+              transition: all 0.5s;
+              visibility: hidden;
+              opacity: 0;
+              letter-spacing: 3px;
+              font-size: 19px;
+              background-color: rgba(3, 2, 2, 0.561);
+              padding: 16px 100px;
+              box-shadow: 5px 5px 10px lightslategrey;
+            "
+            id="cheat-msg"
+          >
+            Cheat is activated...
+          </p>
+        </div>
+        <div>
+          <h3
+            style="
+              font-size: 22px;
+              background-color: black;
+              color: white;
+              padding: 5px 8px;
+            "
+          >
+            Point: <span id="point">0</span>
+          </h3>
+        </div>
+      </div>
+
+      <table id="my-table">
+        <tr>
+          <th colspan="3">Cash Memo</th>
+        </tr>
+        <tr style="text-align: center">
+          <td>SL</td>
+          <td>Product Name</td>
+          <td>Price</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Mobile</td>
+          <td rowspan="2" class="td-center">$ 200</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Mobile</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Watch</td>
+          <td class="td-center">$ 50</td>
+        </tr>
+        <tr>
+          <td colspan="2" style="text-align: right">Total</td>
+          <td class="td-center">$ <span id="cheat1">250</span></td>
+        </tr>
+      </table>
+
+      <div
+        style="
+          margin: 20px auto;
+          text-align: center;
+          padding: 20px 0;
+          border: 1px solid goldenrod;
+        "
+        id="playground"
+      >
+        <button onclick="dance()" class="button">Dance Me</button>
+        <button onclick="stopMe()" class="button">Stop Me</button>
+        <button onclick="reset()" class="button">Reset Me</button>
+      </div>
     </section>
-</body>
-<script>
+  </body>
+
+  <script>
+    let isGameStarted = "no";
+
     const dance = () => {
-        const table = document.getElementById("my-table");
-        table.classList.add("table-dance");
-    }
-    
+      const table = document.getElementById("my-table");
+      table.classList.add("table-dance");
+      isGameStarted = "yes";
+    };
+
     const stopMe = () => {
-        const table = document.getElementById("my-table");
-        table.classList.remove("table-dance");
-        let pointCounter = document.getElementById("point");
-        pointCounter.innerText = parseInt(pointCounter.innerText)+1;
-    }
+      const table = document.getElementById("my-table");
+      table.classList.remove("table-dance");
+
+      let pointCounter = document.getElementById("point");
+      if (isGameStarted == "yes") {
+        pointCounter.innerText = parseInt + 1;
+      } else {
+        window.alert("Game is not started");
+      }
+      isGameStarted = "no";
+    };
     const reset = () => {
-        const table = document.getElementById("my-table");
-        table.classList.remove("table-dance");
-        let pointCounter = document.getElementById("point");
-        pointCounter.innerText = "0";
-    }
+      const table = document.getElementById("my-table");
+      table.classList.remove("table-dance");
+      let pointCounter = document.getElementById("point");
+      pointCounter.innerText = "0";
+      isGameStarted = "no";
+    };
 
-    document.getElementById("cheat1").addEventListener("dblclick", ()=> {
-            for(let i=0; i<101; i++) {
-                let pointCounter = document.getElementById("point");
-                pointCounter.innerText = parseInt(pointCounter.innerText)+1;
-            }
-    })
+    // Cheat Code
+    let cheatCode = "";
 
+    const initializeCheat = () => {
+      let pointCounter = document.getElementById("point");
+      pointCounter.innerText = parseInt(pointCounter.innerText) + 5;
 
-</script>
+      // show cheat msg
+      const msg = document.getElementById("cheat-msg");
+      msg.style.visibility = "visible";
+      msg.style.opacity = "1";
+
+      setTimeout(() => {
+        msg.style.visibility = "hidden";
+        msg.style.opacity = "0";
+      }, 3000);
+    };
+
+    document.getElementById("cheat1").addEventListener("dblclick", () => {
+      initializeCheat();
+    });
+
+    window.document.body.addEventListener("keyup", (event) => {
+      cheatCode += event.key;
+
+      if (cheatCode.includes("ilovejs")) {
+        initializeCheat();
+        cheatCode = "";
+      }
+    });
+
+    // Point Reducer
+    document.getElementById("playground").addEventListener("click", (event) => {
+      const clicked = event.target.innerText;
+      let pointCounter = document.getElementById("point");
+      if (
+        clicked != "Stop Me" &&
+        clicked != "Reset Me" &&
+        clicked != "Dance Me"
+      ) {
+        if (isGameStarted == "yes") {
+          pointCounter.innerText = parseInt - 1;
+        }
+      }
+    });
+  </script>
 </html>
