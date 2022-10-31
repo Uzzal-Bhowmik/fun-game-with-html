@@ -107,7 +107,7 @@
 
       let pointCounter = document.getElementById("point");
       if (isGameStarted == "yes") {
-        pointCounter.innerText = parseInt + 1;
+        pointCounter.innerText = parseInt(pointCounter.innerText) + 1;
       } else {
         window.alert("Game is not started");
       }
@@ -153,7 +153,7 @@
     });
 
     // Point Reducer
-    document.getElementById("playground").addEventListener("click", (event) => {
+    document.getElementById("body").addEventListener("click", (event) => {
       const clicked = event.target.innerText;
       let pointCounter = document.getElementById("point");
       if (
@@ -162,7 +162,7 @@
         clicked != "Dance Me"
       ) {
         if (isGameStarted == "yes") {
-          pointCounter.innerText = parseInt - 1;
+          pointCounter.innerText = parseInt(pointCounter.innerText) - 1;
         }
       }
     });
