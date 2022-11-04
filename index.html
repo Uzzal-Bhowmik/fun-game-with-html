@@ -33,7 +33,24 @@
             Cheat is activated...
           </p>
         </div>
-        <div>
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <h3
+            style="
+              font-size: 22px;
+              background-color: black;
+              color: white;
+              padding: 5px 8px;
+              margin-right: 8px;
+            "
+          >
+            Milestone: <span id="milestone">0</span>
+          </h3>
           <h3
             style="
               font-size: 22px;
@@ -94,6 +111,7 @@
 
   <script>
     let isGameStarted = "no";
+    let milePoint = 0;
 
     const dance = () => {
       const table = document.getElementById("my-table");
@@ -112,6 +130,7 @@
         window.alert("Game is not started");
       }
       isGameStarted = "no";
+      mile();
     };
     const reset = () => {
       const table = document.getElementById("my-table");
@@ -119,6 +138,7 @@
       let pointCounter = document.getElementById("point");
       pointCounter.innerText = "0";
       isGameStarted = "no";
+      clearMile();
     };
 
     // Cheat Code
@@ -141,6 +161,7 @@
 
     document.getElementById("cheat1").addEventListener("dblclick", () => {
       initializeCheat();
+      mile();
     });
 
     window.document.body.addEventListener("keyup", (event) => {
@@ -150,7 +171,12 @@
         initializeCheat();
         cheatCode = "";
       }
+      mile();
     });
+
+    setInterval(() => {
+      cheatCode = "";
+    }, 10000);
 
     // Point Reducer
     document.getElementById("body").addEventListener("click", (event) => {
@@ -166,5 +192,26 @@
         }
       }
     });
+
+    // milestone
+    const mile = () => {
+      let point = document.getElementById("point");
+      let mile = document.getElementById("milestone");
+
+      if (
+        parseInt(point.innerText) % 10 == 0 &&
+        parseInt(point.innerText) > 0
+      ) {
+        milePoint += 1;
+      }
+      mile.innerText = milePoint;
+    };
+
+    // clear milestone
+    const clearMile = () => {
+      let mile = document.getElementById("milestone");
+      mile.innerText = 0;
+      milePoint = 0;
+    };
   </script>
 </html>
